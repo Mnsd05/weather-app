@@ -1,0 +1,31 @@
+body{
+    box-sizing: content-box;
+    background: linear-gradient(to bottom, #393B57, #393B57);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.card--container{
+    border-radius: 5px;
+}
+h1,h3,h4{
+    line-height: 0.1;
+}
+.temp {
+    font-family: "Quicksand", sans-serif;
+    font-size: 60px;
+}
+.extra--weather{
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+.humidity{
+    margin-right: 10px;
+}
+.favourite--places{
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
+}
