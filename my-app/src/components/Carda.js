@@ -1,7 +1,12 @@
 import React from "react"
-import { DivCard } from "../styled/Card.style"
+import { SearchCard } from "../styled/Card.style"
+// fetch data every one hour, 
 
-export default function Card(props) {
+// format date like this: day, date, month, year
+// line break: time
+
+
+export default function Carda(props) {
     const [time,setTime] = React.useState({
         hours: "",
         minutes: "",
@@ -11,7 +16,7 @@ export default function Card(props) {
         month:"",
         year:"",
     })
-    
+    const [unsuccessfulFetch, setUnsuccessfulFetch] = React.useState(false)
     const [weatherData, setWeatherData] = React.useState({})
     const [count, setCount] = React.useState(false)
     const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -52,6 +57,7 @@ export default function Card(props) {
                 `https://api.openweathermap.org/data/2.5/weather?q=${props.location}&appid=941b0a48084f661c8074fc9a54e11ee7`
             );
             if (!response.ok) {
+                setUnsuccessfulFetch(true)
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
@@ -63,6 +69,7 @@ export default function Card(props) {
                 humidity: data.main.humidity,
                 pressure: data.main.pressure,
             })
+           
             setCount(true)
         }
         getResponse()
@@ -78,11 +85,13 @@ export default function Card(props) {
         else if (weatherData.description === "clear sky") image = "./images/night.jpg"
         else if (weatherData.description === "light rain") image = "./images/rainynight.jpg"
     }
-  
-
-
+    if (unsuccessfulFetch) {
+        return (
+            <h1 className="cant--find">Location not found</h1>
+        )
+    }
     return (
-        <DivCard className="card--container" imageSrc = {image} >
+        <SearchCard className="card--search--container" imageSrc = {image} >
             <h3>{time.hours === "" ? "" : `${time.hours}:${time.minutes}:${time.seconds}`}</h3>
             {/* <h1>{time.day}</h1> */}
             <h3>{weatherData.location}</h3>
@@ -94,51 +103,6 @@ export default function Card(props) {
                 <img src = "./images/pressure.png" width = {20}px></img>
                 <span>{weatherData.pressure}</span>
             </div>
-        </DivCard>
+        </SearchCard>
     )
 }
-// `https://api.openweathermap.org/data/2.5/weather?q=${props.location}&appid=941b0a48084f661c8074fc9a54e11ee7`
-// {
-//     "coord": {
-//       "lon": 103.8501,
-//       "lat": 1.2897
-//     },
-//     "weather": [
-//       {
-//         "id": 802,
-//         "main": "Clouds",
-//         "description": "scattered clouds",
-//         "icon": "03d"
-//       }
-//     ],
-//     "base": "stations",
-//     "main": {
-//       "temp": 301.97,
-//       "feels_like": 306.21,
-//       "temp_min": 299.1,
-//       "temp_max": 305.23,
-//       "pressure": 1007,
-//       "humidity": 74
-//     },
-//     "visibility": 6000,
-//     "wind": {
-//       "speed": 5.14,
-//       "deg": 120
-//     },
-//     "clouds": {
-//       "all": 40
-//     },
-//     "dt": 1673686176,
-//     "sys": {
-//       "type": 1,
-//       "id": 9470,
-//       "country": "SG",
-//       "sunrise": 1673651498,
-//       "sunset": 1673694883
-//     },
-//     "timezone": 28800,
-//     "id": 1880252,
-//     "name": "Singapore",
-//     "cod": 200
-//   }
-
