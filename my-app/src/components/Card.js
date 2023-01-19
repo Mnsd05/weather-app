@@ -72,11 +72,11 @@ export default function Card(props) {
     if (time.hours < 18 && time.hours > 6) {
         if (weatherData.description === "few clouds" || weatherData.description === "scattered clouds" || weatherData.description === "broken clouds" || weatherData.description === "overcast clouds") image = "./images/cloudyday.jpg"
         else if (weatherData.description === "clear sky") image = "./images/sunnyday.jpg"
-        else if (weatherData.description === "light rain") image = "./images/rainyday.png"
+        else if (weatherData.description === "light rain" || weatherData.description === "light intensity shower rain") image = "./images/rainyday.png"
     } else {
         if (weatherData.description === "few clouds" || weatherData.description === "scattered clouds" || weatherData.description === "broken clouds" || weatherData.description === "overcast clouds") image = "./images/night.jpg"
         else if (weatherData.description === "clear sky") image = "./images/night.jpg"
-        else if (weatherData.description === "light rain") image = "./images/rainynight.jpg"
+        else if (weatherData.description === "light rain" || weatherData.description === "light intensity shower rain") image = "./images/rainynight.jpg"
     }
   
 
