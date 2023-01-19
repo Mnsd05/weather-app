@@ -12,7 +12,13 @@ export default function Card(props) {
         year:"",
     })
     
-    const [weatherData, setWeatherData] = React.useState({})
+    const [weatherData, setWeatherData] = React.useState({
+        timeZone: "",
+        location: "",
+        temp: "",
+        description: "",
+        humidity: "",
+        pressure: "",})
     const [count, setCount] = React.useState(false)
     const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const Month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -70,17 +76,16 @@ export default function Card(props) {
     },[])
     let image = ""
     if (time.hours < 18 && time.hours > 6) {
-        if (weatherData.description === "few clouds" || weatherData.description === "scattered clouds" || weatherData.description === "broken clouds" || weatherData.description === "overcast clouds") image = "./images/cloudyday.jpg"
-        else if (weatherData.description === "clear sky") image = "./images/sunnyday.jpg"
-        else if (weatherData.description === "light rain" || weatherData.description === "light intensity shower rain") image = "./images/rainyday.png"
+        if (weatherData.description.includes("clouds")) image = "./images/cloudyday.jpg"
+        else if (weatherData.description.includes("sky")) image = "./images/sunnyday.jpg"
+        else if (weatherData.description.includes("rain")) image = "./images/rainyday.png"
+        else if (weatherData.description.includes("snow")) image = "./images/snowday.jpg"
     } else {
-        if (weatherData.description === "few clouds" || weatherData.description === "scattered clouds" || weatherData.description === "broken clouds" || weatherData.description === "overcast clouds") image = "./images/night.jpg"
-        else if (weatherData.description === "clear sky") image = "./images/night.jpg"
-        else if (weatherData.description === "light rain" || weatherData.description === "light intensity shower rain") image = "./images/rainynight.jpg"
+        if (weatherData.description.includes("clouds")) image = "./images/night.jpg"
+        else if (weatherData.description.includes("sky")) image = "./images/night.jpg"
+        else if (weatherData.description.includes("rain")) image = "./images/rainynight.jpg"
+        else if (weatherData.description.includes("snow")) image = "./images/snownight.jpg"
     }
-  
-
-
     return (
         <DivCard className="card--container" imageSrc = {image} >
             <h3>{time.hours === "" ? "" : `${time.hours}:${time.minutes}:${time.seconds}`}</h3>

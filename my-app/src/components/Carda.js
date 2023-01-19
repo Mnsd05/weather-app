@@ -1,10 +1,5 @@
 import React from "react"
 import { SearchCard } from "../styled/Card.style"
-// fetch data every one hour, 
-
-// format date like this: day, date, month, year
-// line break: time
-
 
 export default function Carda(props) {
     const [time,setTime] = React.useState({
@@ -17,7 +12,13 @@ export default function Carda(props) {
         year:"",
     })
     const [unsuccessfulFetch, setUnsuccessfulFetch] = React.useState(false)
-    const [weatherData, setWeatherData] = React.useState({})
+    const [weatherData, setWeatherData] = React.useState({
+        timeZone: "",
+        location: "",
+        temp: "",
+        description: "",
+        humidity: "",
+        pressure: "",})
     const [count, setCount] = React.useState(false)
     const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const Month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -77,13 +78,15 @@ export default function Carda(props) {
     },[])
     let image = ""
     if (time.hours < 18 && time.hours > 6) {
-        if (weatherData.description === "few clouds" || weatherData.description === "scattered clouds" || weatherData.description === "broken clouds" || weatherData.description === "overcast clouds") image = "./images/cloudyday.jpg"
-        else if (weatherData.description === "clear sky") image = "./images/sunnyday.jpg"
-        else if (weatherData.description === "light rain") image = "./images/rainyday.png"
+        if (weatherData.description.includes("clouds")) image = "./images/cloudyday.jpg"
+        else if (weatherData.description.includes("sky")) image = "./images/sunnyday.jpg"
+        else if (weatherData.description.includes("rain")) image = "./images/rainyday.png"
+        else if (weatherData.description.includes("snow")) image = "./images/snowday.jpg"
     } else {
-        if (weatherData.description === "few clouds" || weatherData.description === "scattered clouds" || weatherData.description === "broken clouds" || weatherData.description === "overcast clouds") image = "./images/night.jpg"
-        else if (weatherData.description === "clear sky") image = "./images/night.jpg"
-        else if (weatherData.description === "light rain") image = "./images/rainynight.jpg"
+        if (weatherData.description.includes("clouds")) image = "./images/night.jpg"
+        else if (weatherData.description.includes("sky")) image = "./images/night.jpg"
+        else if (weatherData.description.includes("rain")) image = "./images/rainynight.jpg"
+        else if (weatherData.description.includes("snow")) image = "./images/snownight.jpg"
     }
     if (unsuccessfulFetch) {
         return (
@@ -93,10 +96,20 @@ export default function Carda(props) {
             </div>
         )
     }
+    const handleAdd = () => {
+        props.addFav(weatherData.location)
+      }
+    const handleRemove = () => {
+        props.removeFav(weatherData.location)
+    }
+      
     return (
         <div className ="card--search--container">
             <div className = "card--search--feature">
-                <img src = "./images/back_icon.png" width = {40}px title = "back" onClick={props.back}></img>
+                <img src = "./images/back_icon.png" width = {40}px title = "Back" onClick={props.back}></img>
+                <img src  = {props.favouriteList.has(weatherData.location) ? "./images/tickedStar.png" : "./images/untickedStar.png"}
+                className = "favourite--icon" width = {40}px title = "favourite place" 
+                onClick = {props.favouriteList.has(weatherData.location) ? handleRemove : handleAdd}></img>
             </div>
             <SearchCard imageSrc = {image} >
                 <h3>{time.hours === "" ? "" : `${time.hours}:${time.minutes}:${time.seconds}`}</h3>
