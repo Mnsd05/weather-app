@@ -4,10 +4,13 @@ import Navbar from "./components/Navbar"
 import Carda from "./components/Carda"
 export default function App() {
     const [searchData, setSearchData] = React.useState("")
-    const handleData = function getData (data) {
+    let secondClass = ""
+    const handleData = (data) => {
         setSearchData(data)
     }
-    let secondClass = ""
+    const clickBack = () => {
+        setSearchData("")
+    }
     if (searchData !== "") secondClass = "blur"
     return (
         <div className = "main--container">
@@ -17,7 +20,7 @@ export default function App() {
                 <Card location = "London" />
                 <Card location = "New York" />
             </section>
-            {searchData && <Carda key = {searchData} location = {searchData}/>}
+            {searchData && <Carda key = {searchData} location = {searchData} back = {clickBack}/>}
         </div>
         
     )

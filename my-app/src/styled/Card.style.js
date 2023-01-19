@@ -19,6 +19,5 @@ export const SearchCard = styled.div`
     background-size: 100% 100%;
     text-align: center;
     color: white;
-    position: absolute;
     border-radius: 10px;
 `;

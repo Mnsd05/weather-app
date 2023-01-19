@@ -87,22 +87,31 @@ export default function Carda(props) {
     }
     if (unsuccessfulFetch) {
         return (
-            <h1 className="cant--find">Location not found</h1>
+            <div className = "cant--find">
+                <img src = "./images/back_icon.png" width = {40}px title = "back" onClick={props.back}></img>
+                <h1>Location not found</h1>
+            </div>
         )
     }
     return (
-        <SearchCard className="card--search--container" imageSrc = {image} >
-            <h3>{time.hours === "" ? "" : `${time.hours}:${time.minutes}:${time.seconds}`}</h3>
-            {/* <h1>{time.day}</h1> */}
-            <h3>{weatherData.location}</h3>
-            <h1 className="temp">{`${Math.floor(weatherData.temp) - 273}`}&#176;</h1>
-            <h4>{weatherData.description}</h4>
-            <div className="extra--weather">
-                <img src = "./images/humidity.png" width = {20}px></img>
-                <span className="humidity">{weatherData.humidity}</span>
-                <img src = "./images/pressure.png" width = {20}px></img>
-                <span>{weatherData.pressure}</span>
+        <div className ="card--search--container">
+            <div className = "card--search--feature">
+                <img src = "./images/back_icon.png" width = {40}px title = "back" onClick={props.back}></img>
             </div>
-        </SearchCard>
+            <SearchCard imageSrc = {image} >
+                <h3>{time.hours === "" ? "" : `${time.hours}:${time.minutes}:${time.seconds}`}</h3>
+                {/* <h1>{time.day}</h1> */}
+                <h3>{weatherData.location}</h3>
+                <h1 className="temp">{`${Math.floor(weatherData.temp) - 273}`}&#176;</h1>
+                <h4>{weatherData.description}</h4>
+                <div className="extra--weather">
+                    <img src = "./images/humidity.png" width = {20}px></img>
+                    <span className="humidity">{weatherData.humidity}</span>
+                    <img src = "./images/pressure.png" width = {20}px></img>
+                    <span>{weatherData.pressure}</span>
+                </div>
+            </SearchCard>
+        </div>
+        
     )
 }
