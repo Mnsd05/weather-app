@@ -6,6 +6,5 @@ Real-time global weather tracking with user-friendly interface
 * Customizable main screen via favourite location list
 * Search for any locations using search box
 * Add/Delete any locations to favourite location list
-* 
+![cardsearch](https://user-images.githubusercontent.com/99007109/218269951-33db65fa-1bb5-4ec3-b5cf-ec540b09fae0.png)
 
-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
