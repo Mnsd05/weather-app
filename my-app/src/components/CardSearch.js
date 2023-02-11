@@ -1,16 +1,13 @@
 import React from "react"
 import { SearchCard } from "../styled/Card.style"
 
-export default function Carda(props) {
+export default function CardSearch(props) {
     const [time,setTime] = React.useState({
         hours: "",
         minutes: "",
         seconds: "",
-        day:"",
-        dayOfMonth:"",
-        month:"",
-        year:"",
     })
+
     const [unsuccessfulFetch, setUnsuccessfulFetch] = React.useState(false)
     const [weatherData, setWeatherData] = React.useState({
         timeZone: "",
@@ -18,24 +15,22 @@ export default function Carda(props) {
         temp: "",
         description: "",
         humidity: "",
-        pressure: "",})
+        pressure: "",
+    })
+
     const [count, setCount] = React.useState(false)
-    const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const Month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
     if (count) {
         setCount(false)
         setInterval(() => {
         const date = new Date()
         setTime(prevTime => {
             let curHours = (date.getHours()) + weatherData.timeZone / 3600 - 8
-            let curDay = weekDay[date.getDay()]
             if (curHours > 23) {
                 curHours -= 24
-                curDay = weekDay[(date.getDay() + 1) % 7]
             }
             else if (curHours < 0) {
                 curHours += 24
-                curDay = weekDay[(date.getDay() - 1) % 7]
             }
             const curMinutes = (date.getMinutes() < 10 ? `0${date.getMinutes()}`: date.getMinutes())
             const curSeconds = (date.getSeconds() < 10 ? `0${date.getSeconds()}`: date.getSeconds())
@@ -44,14 +39,11 @@ export default function Carda(props) {
                 hours: curHours,
                 minutes: curMinutes,
                 seconds: curSeconds,
-                day: curDay,
-                dayOfMonth: date.getDate(),
-                month: Month[date.getMonth()],
-                year: date.getFullYear(),
             }
         })
     }, 1000)
     }
+
     React.useEffect(() => {
         async function getResponse() {
             const response = await fetch(

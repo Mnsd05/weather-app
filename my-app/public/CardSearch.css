@@ -1,0 +1,24 @@
+.card--search--container{
+    position: absolute;
+    top: 100px;  
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: 9;
+    visibility: hidden;
+    animation: appear 0s 1.5s forwards;
+}
+.card--search--feature{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cant--find {
+    position: absolute;
+    width:300px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 300px;
+    text-align: center;
+}
