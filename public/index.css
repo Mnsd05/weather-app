@@ -7,10 +7,10 @@ body{
 h1,h3,h4{
     line-height: 0.1;
 }
-@keyframes appear {
-    to{ visibility: visible; }
+@keyframes appear{
+    to{visibility: visible;}
 }
 @keyframes myOpacity{
     100%{opacity: 0;}
-   }
+}
 
