@@ -1,4 +1,5 @@
 # Weather-app
+[Online hosting for app](https://mnsd05.github.io/weather-app/)
 Real-time global weather tracking with user-friendly interface
 ![weather-app](https://user-images.githubusercontent.com/99007109/218269465-6baf17af-42e4-470d-bbf6-4aa507de0fb5.png)
 
