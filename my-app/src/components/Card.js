@@ -6,10 +6,6 @@ export default function Card(props) {
         hours: "",
         minutes: "",
         seconds: "",
-        day:"",
-        dayOfMonth:"",
-        month:"",
-        year:"",
     })
     
     const [weatherData, setWeatherData] = React.useState({
@@ -75,12 +71,15 @@ export default function Card(props) {
         else if (weatherData.description.includes("sky")) image = "./images/sunnyday.jpg"
         else if (weatherData.description.includes("rain")) image = "./images/rainyday.png"
         else if (weatherData.description.includes("snow")) image = "./images/snowday.jpg"
+        else if (weatherData.description.includes("haze")) image = "./images/haze.jpg"
     } else {
         if (weatherData.description.includes("clouds")) image = "./images/night.jpg"
         else if (weatherData.description.includes("sky")) image = "./images/night.jpg"
         else if (weatherData.description.includes("rain")) image = "./images/rainynight.jpg"
         else if (weatherData.description.includes("snow")) image = "./images/snownight.jpg"
+        else if (weatherData.description.includes("haze")) image = "./images/haze.jpg"
     }
+
     return (
         <DivCard className="card--container" imageSrc = {image} >
             <div className="weather--information">

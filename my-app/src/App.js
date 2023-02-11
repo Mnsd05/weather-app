@@ -5,7 +5,6 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import CardSearch from "./components/CardSearch"
-
 export default function App() {
     const settings = {  // from slick neostack to set carousel properties
         dots: true,
@@ -43,7 +42,7 @@ export default function App() {
       };
     //search location and get information for this location
     const [searchData, setSearchData] = React.useState("") 
-    const [favouritePlaces, setFavouritePlaces] = React.useState(new Set(["London", "Singapore", "New York"]))
+    const [favouritePlaces, setFavouritePlaces] = React.useState(new Set(JSON.parse(localStorage.getItem("favourite--places"))))
     //array contains favourite places
     const [cardArray, setCardArray] = React.useState([...favouritePlaces])
 
@@ -68,6 +67,7 @@ export default function App() {
     }
   
     const favouriteCard = cardArray.map((prevElement) => {
+      localStorage.setItem("favourite--places", JSON.stringify(cardArray))
       return <Card location = {prevElement}/>
     })
     

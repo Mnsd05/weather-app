@@ -68,17 +68,20 @@ export default function CardSearch(props) {
         getResponse()
 
     },[])
+
     let image = ""
     if (time.hours < 18 && time.hours > 6) {
         if (weatherData.description.includes("clouds")) image = "./images/cloudyday.jpg"
         else if (weatherData.description.includes("sky")) image = "./images/sunnyday.jpg"
         else if (weatherData.description.includes("rain")) image = "./images/rainyday.png"
         else if (weatherData.description.includes("snow")) image = "./images/snowday.jpg"
+        else if (weatherData.description.includes("haze")) image = "./images/haze.jpg"
     } else {
         if (weatherData.description.includes("clouds")) image = "./images/night.jpg"
         else if (weatherData.description.includes("sky")) image = "./images/night.jpg"
         else if (weatherData.description.includes("rain")) image = "./images/rainynight.jpg"
         else if (weatherData.description.includes("snow")) image = "./images/snownight.jpg"
+        else if (weatherData.description.includes("haze")) image = "./images/haze.jpg"
     }
     if (unsuccessfulFetch) {
         return (
@@ -116,7 +119,6 @@ export default function CardSearch(props) {
                     <span>{weatherData.pressure}</span>
                 </div>
             </SearchCard>
-        </div>
-        
+        </div> 
     )
 }
