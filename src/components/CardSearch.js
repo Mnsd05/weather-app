@@ -25,20 +25,25 @@ export default function CardSearch(props) {
         setInterval(() => {
         const date = new Date()
         setTime(prevTime => {
-            let curHours = (date.getHours()) + weatherData.timeZone / 3600 - 8
-            if (curHours > 23) {
-                curHours -= 24
+            let currentSecondsCoutingFromMidnightUTC = (date.getHours() - 8) * 3600 + date.getMinutes() * 60 + date.getSeconds() 
+            + weatherData.timeZone
+
+            if (currentSecondsCoutingFromMidnightUTC >= 86400) {
+                currentSecondsCoutingFromMidnightUTC -= 86400
             }
-            else if (curHours < 0) {
-                curHours += 24
+            else if (currentSecondsCoutingFromMidnightUTC < 0) {
+                currentSecondsCoutingFromMidnightUTC += 86400
             }
-            const curMinutes = (date.getMinutes() < 10 ? `0${date.getMinutes()}`: date.getMinutes())
-            const curSeconds = (date.getSeconds() < 10 ? `0${date.getSeconds()}`: date.getSeconds())
+            const displayedHours = Math.floor(currentSecondsCoutingFromMidnightUTC / 3600)
+            const currentMinutes = Math.floor((currentSecondsCoutingFromMidnightUTC - displayedHours * 3600) / 60)
+            const displayedMinutes = (currentMinutes < 10 ? `0${currentMinutes}`: currentMinutes)
+            const currentSeconds = Math.floor((currentSecondsCoutingFromMidnightUTC - displayedHours * 3600 - displayedMinutes * 60))
+            const displayedSeconds = (currentSeconds < 10 ? `0${currentSeconds}`: currentSeconds)
             
             return {
-                hours: curHours,
-                minutes: curMinutes,
-                seconds: curSeconds,
+                hours: displayedHours,
+                minutes: displayedMinutes,
+                seconds: displayedSeconds,
             }
         })
     }, 1000)
