@@ -1,0 +1,16 @@
+body{
+    box-sizing: content-box;
+    background: linear-gradient(to bottom, #393B57, #393B57);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+h1,h3,h4{
+    line-height: 0.1;
+}
+@keyframes appear{
+    to{visibility: visible;}
+}
+@keyframes myOpacity{
+    100%{opacity: 0;}
+}
+

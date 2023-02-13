@@ -1,0 +1,12 @@
+.temp {
+    font-family: "Quicksand", sans-serif;
+    font-size: 60px;
+}
+.extra--weather{
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+.humidity{
+    margin-right: 10px;
+}
