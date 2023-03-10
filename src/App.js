@@ -48,23 +48,24 @@ export default function App() {
 
     let secondClass = ""
     //collect data using fetch
-    const handleData = (data) => {
-        setSearchData(data)
-    }
+    const handleData = React.useCallback((data) => {
+        setSearchData(prevData => data)
+    },[]);
+
     //add clickback feature after searching
-    const clickBack = () => {
-        setSearchData("")
-        setCardArray([...favouritePlaces])
-    }
+    const clickBack = React.useCallback(() => {
+        setSearchData(prevData => "")
+        setCardArray(prevFavouritePlaces => [...favouritePlaces])
+    },[favouritePlaces]);
 
     //https://stackoverflow.com/questions/58806883/how-to-use-set-with-reacts-usestate
-    const addFavouritePlace = (place) => {
+    const addFavouritePlace = React.useCallback((place) => {
       setFavouritePlaces (prevSet => new Set([...prevSet, place]))
-    }
+    },[]);
 
-    const removeFavouritePlace = (place) => {
+    const removeFavouritePlace = React.useCallback((place) => {
       setFavouritePlaces (prevSet => new Set([...prevSet].filter(x => x !== place)))
-    }
+    },[]);
   
     const favouriteCard = cardArray.map((prevElement) => {
       localStorage.setItem("favourite--places", JSON.stringify(cardArray))
