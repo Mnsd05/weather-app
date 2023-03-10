@@ -1,3 +1,10 @@
+nav {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 .search--box{
     width:300px;
     height: 25px;
@@ -9,7 +16,76 @@
     background-position-x: 5px;
     background-repeat: no-repeat;
     text-indent: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+}
+.dropdown{
+    background-color: red;
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 10px;
+}
+.dropdown div{
+    border-right: solid 0.5px #000111;
+    padding: 5px 10px;
+}
+.rotate {
+    transform: rotate(90deg);
+    transition: all 0.5s ease-in-out;
+}
+.rotate--back {
+    transform: rotate(0deg);
+    transition: all 0.5s ease-in-out;
+}
+.feature--list {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+.feature--image {
+    width: 40px;
+}
+.feature--line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.open {
+    visibility: visible;
+    overflow: hidden;
+    animation: counter--drop 1s ease forwards;
+}
+@keyframes drop {
+    from {
+      height: 0px;
+    }
+    to {
+      height: 200px;
+    }
+  }
+@keyframes counter--drop {
+    from {
+      height: 200px;
+    }
+    to {
+      height: 0px;
+    }
+  }
+.close {
+    border-top: 2px solid white;
+    visibility: visible;
+    overflow: hidden;
+    animation: drop 1s ease forwards;
 }

@@ -1,4 +1,5 @@
 body{
+    margin: 0;
     box-sizing: content-box;
     background: linear-gradient(to bottom, #393B57, #393B57);
     background-repeat: no-repeat;
