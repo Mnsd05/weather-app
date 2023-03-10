@@ -9,7 +9,7 @@
     margin-right: auto;
     gap: 10px;
     visibility: hidden;
-    animation: appear 0s 1.5s forwards;
+    animation: appear 0s 2s forwards;
 }
 .blur{
     animation: myOpacity;
@@ -18,5 +18,5 @@
     animation-iteration-count: 1;
     animation-delay: 0s;
     animation-timing-function: linear;
-    animation-duration: 1.5s;
+    animation-duration: 2s;
 }

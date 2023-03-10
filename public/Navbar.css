@@ -41,3 +41,51 @@ nav {
     transform: rotate(0deg);
     transition: all 0.5s ease-in-out;
 }
+.feature--list {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    margin-top: 10px;
+}
+.feature--image {
+    width: 40px;
+}
+.feature--line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.open {
+    visibility: visible;
+    overflow: hidden;
+    animation: counter--drop 1s ease forwards;
+}
+@keyframes drop {
+    from {
+      height: 0px;
+    }
+    to {
+      height: 200px;
+    }
+  }
+@keyframes counter--drop {
+    from {
+      height: 200px;
+    }
+    to {
+      height: 0px;
+    }
+  }
+.close {
+    border-top: 2px solid white;
+    visibility: visible;
+    overflow: hidden;
+    animation: drop 1s ease forwards;
+}
